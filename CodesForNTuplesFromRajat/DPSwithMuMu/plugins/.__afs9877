@@ -1,0 +1,36 @@
+Reading cached build data
+>> Local Products Rules ..... started
+>> Local Products Rules ..... done
+****WARNING: Invalid tool TauAnalysis/SVfitMEM. Please fix src/TauAnalysis/SVfitStandalone/BuildFile.xml file.
+>> Creating project symlinks
+>> Entering Package ZplusJets/DPSwithMuMu
+>> Entering Package DataFormats/PatCandidates
+  src/PhysicsTools/PatAlgos/python -> python/PhysicsTools/PatAlgos
+  src/PhysicsTools/PatUtils/python -> python/PhysicsTools/PatUtils
+  src/RecoMET/METProducers/python -> python/RecoMET/METProducers
+  src/LLRHiggsTauTau/NtupleProducer/python -> python/LLRHiggsTauTau/NtupleProducer
+  src/UFHZZAnalysisRun2/FSRPhotons/python -> python/UFHZZAnalysisRun2/FSRPhotons
+  src/ZplusJets/DPSwithMuMu/python -> python/ZplusJets/DPSwithMuMu
+>> Compiling edm plugin /afs/cern.ch/work/a/amkalsi/public/Cosmic/CMSSW_8_0_20/src/ZplusJets/DPSwithMuMu/plugins/DPSwithMuMu.cc 
+>> Building edm plugin tmp/slc6_amd64_gcc530/src/ZplusJets/DPSwithMuMu/plugins/ZplusJetsDPSwithMuMuAuto/libZplusJetsDPSwithMuMuAuto.so
+Leaving library rule at src/ZplusJets/DPSwithMuMu/plugins
+@@@@ Running edmWriteConfigs for ZplusJetsDPSwithMuMuAuto
+--- Registered EDM Plugin: ZplusJetsDPSwithMuMuAuto
+gmake[1]: Entering directory '/afs/cern.ch/work/a/amkalsi/public/Cosmic/CMSSW_8_0_20'
+>> Local Products Rules ..... started
+>> Local Products Rules ..... done
+****WARNING: Invalid tool TauAnalysis/SVfitMEM. Please fix src/TauAnalysis/SVfitStandalone/BuildFile.xml file.
+@@@@ Refreshing Plugins:edmPluginRefresh
+>> Creating project symlinks
+>> Done generating edm plugin poisoned information
+  src/PhysicsTools/PatAlgos/python -> python/PhysicsTools/PatAlgos
+  src/PhysicsTools/PatUtils/python -> python/PhysicsTools/PatUtils
+  src/RecoMET/METProducers/python -> python/RecoMET/METProducers
+  src/LLRHiggsTauTau/NtupleProducer/python -> python/LLRHiggsTauTau/NtupleProducer
+  src/UFHZZAnalysisRun2/FSRPhotons/python -> python/UFHZZAnalysisRun2/FSRPhotons
+  src/ZplusJets/DPSwithMuMu/python -> python/ZplusJets/DPSwithMuMu
+>> Done python_symlink
+>> Compiling python modules python
+>> All python modules compiled
+>> Pluging of all type refreshed.
+gmake[1]: Leaving directory '/afs/cern.ch/work/a/amkalsi/public/Cosmic/CMSSW_8_0_20'

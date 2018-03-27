@@ -1,0 +1,59 @@
+import FWCore.ParameterSet.Config as cms
+
+process = cms.Process("analysis")
+from ROOT import TVector3, TLorentzVector
+
+process.load("FWCore.MessageService.MessageLogger_cfi")
+process.load("Configuration.StandardSequences.GeometryDB_cff")
+process.load("Configuration.StandardSequences.Services_cff")
+process.load("Configuration.Geometry.GeometryRecoDB_cff")
+process.load("Configuration.StandardSequences.MagneticField_38T_cff")
+
+IsMC=False
+from Configuration.AlCa.autoCond import autoCond
+process.load("Configuration.StandardSequences.FrontierConditions_GlobalTag_cff")    
+
+if IsMC:
+    process.GlobalTag.globaltag = '80X_mcRun2_asymptotic_2016_miniAODv2_v1'
+else :
+    # process.GlobalTag.globaltag = '80X_dataRun2_Prompt_ICHEP16JEC_v0' # ICHEP
+    process.GlobalTag.globaltag = '80X_dataRun2_2016SeptRepro_v4' # Run B-G sept rereco 2016
+    # process.GlobalTag.globaltag = '80X_dataRun2_Prompt_v14' # Run H prompt-reco 2016
+print process.GlobalTag.globaltag
+
+process.MessageLogger.cerr.FwkReport.reportEvery = cms.untracked.int32(1)
+##-------------------- Turn-on the FastJet jet area calculation for your favorite algorithm -----------------------
+process.GoodVertexFilter = cms.EDFilter("VertexSelector",
+                                        src = cms.InputTag("offlineSlimmedPrimaryVertices"),
+                                        cut = cms.string("!isFake && ndof > 4 && abs(z) <= 24 && position.Rho <= 2"),
+                                        filter = cms.bool(True)   # otherwise it won't filter the events, just produce an empty vertex collection.
+                                        )
+
+
+process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(1000))
+process.source = cms.Source("PoolSource",
+                            fileNames = cms.untracked.vstring('/store/data/Run2016G/SingleMuon/MINIAOD/23Sep2016-v1/1110000/72446D9C-D89C-E611-9060-002590A3C984.root'
+                                                              ),
+                            skipEvents = cms.untracked.uint32(0)                       
+                            )
+
+
+
+process.out = cms.OutputModule("PoolOutputModule",
+                               fileName = cms.untracked.string('patTuple.root')
+                               )
+
+
+
+process.demo = cms.EDAnalyzer('DPSwithMuMu',
+                              bits          = cms.InputTag("TriggerResults", "", "HLT"),
+                              outputFile       = cms.string("patTuple.root"),
+                              printDebug        = cms.bool(False),
+                              isMC =cms.bool(IsMC),
+                              )
+
+process.p= cms.Path(process.GoodVertexFilter*
+                    process.demo)             
+                    
+process.TFileService = cms.Service("TFileService",fileName = cms.string('patTuple.root'))#for embeded anlzr
+#process.outpath = cms.EndPath(process.out)
